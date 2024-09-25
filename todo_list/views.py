@@ -18,3 +18,7 @@ class TaskCreate(generic.CreateView):
 
 class TaskDetail(generic.DetailView):
     model = Task
+
+class TaskDelete(generic.DeleteView):
+    model = Task
+    success_url = reverse_lazy('tasks')
