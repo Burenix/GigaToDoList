@@ -9,7 +9,7 @@
     Tasks:
     <ul>
         {% for task in tasks %}
-            <li>{{ task.title }}</li>
+            <a href="{% url 'task-detail' task.id %}"><li>{{ task.title }}</li></a> 
         {% endfor %}
     </ul>
     <a href="{% url 'task-create' %}">Create task</a>
