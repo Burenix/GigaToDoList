@@ -22,3 +22,8 @@ class TaskDetail(generic.DetailView):
 class TaskDelete(generic.DeleteView):
     model = Task
     success_url = reverse_lazy('tasks')
+
+class TaskUpdate(generic.UpdateView):
+    model = Task
+    fields = '__all__'
+    success_url = reverse_lazy('tasks')
