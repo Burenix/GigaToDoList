@@ -7,6 +7,10 @@
 </head>
 <body>
     Tasks:
+    <form action="{% url 'task-search' %}" method="GET">
+        <input type="search" name="search_text">
+        <button type="submit">Search</button>
+    </form>
     <ul>
         {% for task in tasks %}
             <li><a href="{% url 'task-detail' task.id %}">{{ task.title }}</a> <a href="{% url 'task-update' task.id %}">Update</a> <a href="{% url 'task-delete' task.id %}">Delete</a></li>
