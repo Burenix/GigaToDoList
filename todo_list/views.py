@@ -48,3 +48,26 @@ class Search(generic.ListView):
         return context
     
 ################## SEARCH ##################
+
+################## FILTER ##################
+
+class TaskFilter(generic.ListView):
+    template_name = 'todo_list/main.html'
+    context_object_name = 'tasks'
+
+    def get_queryset(self):
+        queryset = Task.objects.all()
+
+        filter = self.request.GET.get('filter')
+
+        if filter == 'complete':
+            return queryset.filter(status__exact=True)
+        elif filter == 'incomplete':
+            return queryset.filter(status__exact=False)
+        elif filter == 'deadline':
+            return queryset.filter(status__exact=False).order_by('deadline')
+        else:
+            return queryset
+        
+
+################## FILTER ##################
