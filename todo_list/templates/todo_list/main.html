@@ -21,6 +21,18 @@
                 </button>
             </form>
         </div>
+        <div>
+            <form action="{% url 'task-filter' %}" method="GET">
+                <label for="filter-select">Фильтровать по:</label>
+                <select id="filter-select" name="filter">
+                    <option value="all">ALL</option>
+                    <option value="deadline">DEADLINE</option>
+                    <option value="complete">COMPLETE</option>
+                    <option value="incomplete">INCOMPLETE</option>
+                </select>
+                <input type="submit" value="Применить">
+            </form>
+        </div>
         <div class="tasks-area">
             <ul>
                 {% for task in tasks %}
