@@ -1,0 +1,55 @@
+html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    background-image: linear-gradient(to top right, white, lightblue);
+    background-size: 100% 100%;
+}
+
+h1 {
+    color: white;
+}
+
+.container {
+    background-image: linear-gradient(to top right, rgb(67, 141, 238) 15%, rgb(126, 182, 235), rgb(159, 206, 252));
+    margin: 0 400px 0 400px;
+    padding: 20px;
+    border-radius: 0 0 20px 20px;
+}
+
+.search-area {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.search-string {
+    vertical-align: middle;
+    height: 30px;
+    width: 300px;
+    border: 1px solid lightblue;
+    border-radius: 7px;
+    font-size: 13px;
+}
+
+.search-button {
+    vertical-align: middle;
+    height: 30px;
+    width: 30px;
+    border: 1px solid lightblue;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: white;
+}
+
+#SearchSVG {
+    vertical-align: middle;
+    color: lightblue;
+}
+
+.tasks-area {
+
+}
