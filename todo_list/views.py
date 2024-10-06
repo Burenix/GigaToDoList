@@ -1,10 +1,7 @@
-from django.db.models.query import QuerySet
-from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import edit
 from django.views import generic
 
-from .models import Task
+from todo_list.models import Task
 
 ################### CRUD ###################
 
@@ -67,7 +64,6 @@ class TaskFilter(generic.ListView):
         elif filter == 'deadline':
             return queryset.filter(status__exact=False).order_by('deadline')
         else:
-            return queryset
-        
+            return queryset  
 
 ################## FILTER ##################
