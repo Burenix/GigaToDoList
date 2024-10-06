@@ -10,6 +10,10 @@
 </head>
 <body>
     <div class="container">
+        <form action="{% url 'logout' %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Logout">
+        </form>
         <div>
             <h1>Tasks:</h1>
         </div>
