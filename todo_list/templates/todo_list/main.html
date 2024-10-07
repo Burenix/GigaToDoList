@@ -29,24 +29,24 @@
             <form action="{% url 'task-filter' %}" method="GET">
                 <label for="filter-select">Фильтровать по:</label>
                 <select id="filter-select" name="filter">
-                    <option value="all">ALL</option>
-                    <option value="deadline">DEADLINE</option>
-                    <option value="complete">COMPLETE</option>
-                    <option value="incomplete">INCOMPLETE</option>
+                    <option value="all">Все</option>
+                    <option value="deadline">Дедлайн</option>
+                    <option value="complete">Завершённые</option>
+                    <option value="incomplete">Незавершённые</option>
+                    <option value="simple">Простые</option>
+                    <option value="difficult">Сложные</option>
                 </select>
                 <input type="submit" value="Применить">
             </form>
         </div>
         <div class="tasks-area">
-            <ul>
-                {% for task in tasks %}
-                    <li>
-                        <a class="link-detail" href="{% url 'task-detail' task.id %}">{{ task.title }}</a>
-                        <a class="link-update" href="{% url 'task-update' task.id %}">Update</a>
-                        <a class="link-delete" href="{% url 'task-delete' task.id %}">Delete</a>
-                    </li>
-                {% endfor %}
-            </ul>
+            {% for task in tasks %}
+                <div class="task-item">
+                    <a class="link-detail" href="{% url 'task-detail' task.id %}">- {{ task.title }}</a>
+                    <a class="link-update" href="{% url 'task-update' task.id %}">Update</a>
+                    <a class="link-delete" href="{% url 'task-delete' task.id %}">Delete</a>
+                </div>
+            {% endfor %}
         </div>
         <div class="create-area">
             <a class="link-create" href="{% url 'task-create' %}">Create task</a>
