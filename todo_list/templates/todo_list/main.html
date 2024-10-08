@@ -39,7 +39,7 @@
                 <input type="submit" value="Применить">
             </form>
         </div>
-        <div class="tasks-area">
+        <div class="tasks-container">
             {% for task in tasks %}
                 <div class="task-item">
                     <a class="link-detail" href="{% url 'task-detail' task.id %}">- {{ task.title }}</a>
@@ -47,6 +47,32 @@
                     <a class="link-delete" href="{% url 'task-delete' task.id %}">Delete</a>
                 </div>
             {% endfor %}
+
+            <div class="pagination-wrap">
+                <ul>
+                    {% if page_obj.has_previous %}
+                        <li class="page-num">
+                            <a href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">&lt;</a>
+                        </li>
+                    {% endif %}
+
+                    {% for p in paginator.page_range %}
+                        {% if page_obj.number == p %}
+                            <li class="page-num page-num-selected">{{ p }}</li>
+                        {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+                            <li class="page-num">
+                                <a href="?{{ request.GET.urlencode }}&page={{ p }}">{{ p }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-num">
+                            <a href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">&gt;</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
         <div class="create-area">
             <a class="link-create" href="{% url 'task-create' %}">Create task</a>
