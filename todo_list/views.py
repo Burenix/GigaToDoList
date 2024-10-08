@@ -1,6 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.views import generic
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.utils.http import urlencode
+
 
 from todo_list.models import Task
 
@@ -10,12 +13,34 @@ class TaskList(LoginRequiredMixin, generic.ListView):
     model = Task
     template_name = 'todo_list/main.html'
     context_object_name = 'tasks'
+    paginate_by = 5
 
     def get_queryset(self):
         """
         Возвращает список задач только для текущего авторизованного пользователя.
         """
         return Task.objects.filter(user=self.request.user)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Пагинация
+        paginator = Paginator(self.get_queryset(), self.paginate_by)
+        page = self.request.GET.get('page')
+        try:
+            tasks = paginator.page(page)
+        except PageNotAnInteger:
+            # Если 'page' не является целым числом, используем первую страницу
+            tasks = paginator.page(1)
+        except EmptyPage:
+            # Если 'page' больше, чем количество страниц, используем последнюю страницу
+            tasks = paginator.page(paginator.num_pages)
+
+        context['tasks'] = tasks
+        context['paginator'] = paginator
+        context['page_obj'] = tasks
+
+        return context
 
 class TaskCreate(LoginRequiredMixin, generic.CreateView):
     model = Task
@@ -69,14 +94,33 @@ class TaskUpdate(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
 class Search(LoginRequiredMixin, generic.ListView):
     template_name = 'todo_list/main.html'
     context_object_name = 'tasks'
+    paginate_by = 5
 
     def get_queryset(self):
-        return Task.objects.filter(title__icontains=
-                                   self.request.GET.get('search_text'))
+        search_text = self.request.GET.get('search_text')
+        if search_text:
+            return Task.objects.filter(title__icontains=search_text, user=self.request.user) # Объединяем условия
+        else:
+            return Task.objects.filter(user=self.request.user) # Если поиска нет, показываем все задачи пользователя
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['q'] = self.request.GET.get('q')
+        
+        # Пагинация
+        paginator = Paginator(self.get_queryset(), self.paginate_by)
+        page = self.request.GET.get('page')
+        try:
+            tasks = paginator.page(page)
+        except PageNotAnInteger:
+            tasks = paginator.page(1)
+        except EmptyPage:
+            tasks = paginator.page(paginator.num_pages)
+
+        context['tasks'] = tasks
+        context['paginator'] = paginator
+        context['page_obj'] = tasks
+
         return context
     
 ################## SEARCH ##################
@@ -86,6 +130,7 @@ class Search(LoginRequiredMixin, generic.ListView):
 class TaskFilter(LoginRequiredMixin, generic.ListView):
     template_name = 'todo_list/main.html'
     context_object_name = 'tasks'
+    paginate_by = 5
 
     def get_queryset(self):
         queryset = Task.objects.all()
@@ -103,6 +148,25 @@ class TaskFilter(LoginRequiredMixin, generic.ListView):
         elif filter == 'difficult':
             return queryset.filter(status__exact=False).order_by('-complexity')
         else:
-            return queryset  
+            return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Пагинация
+        paginator = Paginator(self.get_queryset(), self.paginate_by)
+        page = self.request.GET.get('page')
+        try:
+            tasks = paginator.page(page)
+        except PageNotAnInteger:
+            tasks = paginator.page(1)
+        except EmptyPage:
+            tasks = paginator.page(paginator.num_pages)
+
+        context['tasks'] = tasks
+        context['paginator'] = paginator
+        context['page_obj'] = tasks
+
+        return context  
 
 ################## FILTER ##################
