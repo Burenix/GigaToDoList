@@ -1,15 +1,20 @@
+{% extends 'base.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Detail</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
 </head>
 <body>
-    <a href="{% url 'tasks' %}">Back</a>
-    <p>Title - {{ task.title }}</p>
-    <p>Description - {{ task.description }}</p>
-    <p>Complexity - {{ task.complexity }}/5</p>
-    <p>Deadline - {{ task.deadline }}</p>
+    {% block content %}
+        <a href="{% url 'tasks' %}">Back</a>
+        <p>Title - {{ task.title }}</p>
+        <p>Description - {{ task.description }}</p>
+        <p>Complexity - {{ task.complexity }}/5</p>
+        <p>Deadline - {{ task.deadline }}</p>
+    {% endblock content %}
 </body>
 </html>

@@ -1,16 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
     <title>Task Create</title>
 </head>
 <body>
+    {% block content %}
     <a href="{% url 'tasks' %}">Back</a>
     <form method="post" action="">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Submit">
     </form>
+    {% endblock content %}
 </body>
 </html>
