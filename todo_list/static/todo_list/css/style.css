@@ -6,7 +6,7 @@ html {
 body {
     height: 100%;
     margin: 0;
-    background-image: linear-gradient(to top right, white, lightblue);
+    background-image: linear-gradient(to top right, rgb(199, 223, 255) 5%, rgb(194, 221, 247), rgb(208, 238, 255));
     background-size: 100% 100%;
 }
 
@@ -15,10 +15,10 @@ h1 {
 }
 
 .container {
-    background-image: linear-gradient(to top right, rgb(67, 141, 238) 15%, rgb(126, 182, 235), rgb(159, 206, 252));
-    margin: 0 400px 0 400px;
+    background-color: rgb(117, 178, 235);
+    margin: 60px 400px 0 400px;
     padding: 20px;
-    border-radius: 0 0 20px 20px;
+    border-radius: 20px;
 }
 
 .search-area {
