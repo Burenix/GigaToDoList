@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -9,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'todo_list/css/style.css' %}">
 </head>
 <body>
-    <div class="container">
+    {% block content %}
         <form action="{% url 'logout' %}" method="POST">
             {% csrf_token %}
             <input type="submit" value="Logout">
@@ -77,6 +78,6 @@
         <div class="create-area">
             <a class="link-create" href="{% url 'task-create' %}">Create task</a>
         </div>
-    </div>
+    {% endblock content %}
 </body>
 </html>
