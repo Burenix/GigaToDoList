@@ -15,8 +15,8 @@
             {% csrf_token %}
             <input type="submit" value="Logout">
         </form>
-        <div>
-            <h1>Tasks:</h1>
+        <div class="header-text">
+            <h1 id="main-header-text">Твои задачи:</h1>
         </div>
         <div class="search-area">
             <form action="{% url 'task-search' %}" method="GET">
