@@ -11,72 +11,77 @@
 </head>
 <body>
     {% block content %}
-        <form action="{% url 'logout' %}" method="POST">
-            {% csrf_token %}
-            <input type="submit" value="Logout">
-        </form>
-        <div class="header-text">
-            <h1 id="main-header-text">Твои задачи:</h1>
-        </div>
-        <div class="search-area">
-            <form action="{% url 'task-search' %}" method="GET">
-                <input class="search-string" type="search" name="search_text">
-                <button class="search-button" type="submit">
-                    <svg id="SearchSVG" fill="#3a8199" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M31.707 30.282l-9.717-9.776c1.811-2.169 2.902-4.96 2.902-8.007 0-6.904-5.596-12.5-12.5-12.5s-12.5 5.596-12.5 12.5 5.596 12.5 12.5 12.5c3.136 0 6.002-1.158 8.197-3.067l9.703 9.764c0.39 0.39 1.024 0.39 1.415 0s0.39-1.023 0-1.415zM12.393 23.016c-5.808 0-10.517-4.709-10.517-10.517s4.708-10.517 10.517-10.517c5.808 0 10.516 4.708 10.516 10.517s-4.709 10.517-10.517 10.517z"></path></svg>
-                </button>
+        <div class="header-area">
+            <form action="{% url 'logout' %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="Logout">
             </form>
-        </div>
-        <div>
-            <form action="{% url 'task-filter' %}" method="GET">
-                <label for="filter-select">Фильтровать по:</label>
-                <select id="filter-select" name="filter">
-                    <option value="all">Все</option>
-                    <option value="deadline">Дедлайн</option>
-                    <option value="complete">Завершённые</option>
-                    <option value="incomplete">Незавершённые</option>
-                    <option value="simple">Простые</option>
-                    <option value="difficult">Сложные</option>
-                </select>
-                <input type="submit" value="Применить">
-            </form>
-        </div>
-        <div class="tasks-container">
-            {% for task in tasks %}
-                <div class="task-item">
-                    <a class="link-detail" href="{% url 'task-detail' task.id %}">- {{ task.title }}</a>
-                    <a class="link-update" href="{% url 'task-update' task.id %}">Update</a>
-                    <a class="link-delete" href="{% url 'task-delete' task.id %}">Delete</a>
-                </div>
-            {% endfor %}
-
-            <div class="pagination-wrap">
-                <ul>
-                    {% if page_obj.has_previous %}
-                        <li class="page-num">
-                            <a href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">&lt;</a>
-                        </li>
-                    {% endif %}
-
-                    {% for p in paginator.page_range %}
-                        {% if page_obj.number == p %}
-                            <li class="page-num page-num-selected">{{ p }}</li>
-                        {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
-                            <li class="page-num">
-                                <a href="?{{ request.GET.urlencode }}&page={{ p }}">{{ p }}</a>
-                            </li>
-                        {% endif %}
-                    {% endfor %}
-
-                    {% if page_obj.has_next %}
-                        <li class="page-num">
-                            <a href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">&gt;</a>
-                        </li>
-                    {% endif %}
-                </ul>
+            
+            <div class="header-text">
+                <h1 id="main-header-text">Твои задачи:</h1>
             </div>
         </div>
-        <div class="create-area">
-            <a class="link-create" href="{% url 'task-create' %}">Create task</a>
+        <div class="content-area">
+            <div class="search-area">
+                <form action="{% url 'task-search' %}" method="GET">
+                    <input class="search-string" type="search" name="search_text">
+                    <button class="search-button" type="submit">
+                        <svg id="SearchSVG" fill="#3a8199" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M31.707 30.282l-9.717-9.776c1.811-2.169 2.902-4.96 2.902-8.007 0-6.904-5.596-12.5-12.5-12.5s-12.5 5.596-12.5 12.5 5.596 12.5 12.5 12.5c3.136 0 6.002-1.158 8.197-3.067l9.703 9.764c0.39 0.39 1.024 0.39 1.415 0s0.39-1.023 0-1.415zM12.393 23.016c-5.808 0-10.517-4.709-10.517-10.517s4.708-10.517 10.517-10.517c5.808 0 10.516 4.708 10.516 10.517s-4.709 10.517-10.517 10.517z"></path></svg>
+                    </button>
+                </form>
+            </div>
+            <div>
+                <form action="{% url 'task-filter' %}" method="GET">
+                    <label for="filter-select">Фильтровать по:</label>
+                    <select id="filter-select" name="filter">
+                        <option value="all">Все</option>
+                        <option value="deadline">Дедлайн</option>
+                        <option value="complete">Завершённые</option>
+                        <option value="incomplete">Незавершённые</option>
+                        <option value="simple">Простые</option>
+                        <option value="difficult">Сложные</option>
+                    </select>
+                    <input type="submit" value="Применить">
+                </form>
+            </div>
+            <div class="tasks-container">
+                {% for task in tasks %}
+                    <div class="task-item">
+                        <a class="link-detail" href="{% url 'task-detail' task.id %}">- {{ task.title }}</a>
+                        <a class="link-update" href="{% url 'task-update' task.id %}">Update</a>
+                        <a class="link-delete" href="{% url 'task-delete' task.id %}">Delete</a>
+                    </div>
+                {% endfor %}
+    
+                <div class="pagination-wrap">
+                    <ul>
+                        {% if page_obj.has_previous %}
+                            <li class="page-num">
+                                <a href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">&lt;</a>
+                            </li>
+                        {% endif %}
+    
+                        {% for p in paginator.page_range %}
+                            {% if page_obj.number == p %}
+                                <li class="page-num page-num-selected">{{ p }}</li>
+                            {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+                                <li class="page-num">
+                                    <a href="?{{ request.GET.urlencode }}&page={{ p }}">{{ p }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+    
+                        {% if page_obj.has_next %}
+                            <li class="page-num">
+                                <a href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">&gt;</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="create-area">
+                <a class="link-create" href="{% url 'task-create' %}">Create task</a>
+            </div>
         </div>
     {% endblock content %}
 </body>
