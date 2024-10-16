@@ -16,27 +16,19 @@ body {
     background-size: 100% 100%;
 }
 
-
-
 .container {
-    background-color: rgb(117, 178, 235);
+    background-color: rgb(132, 164, 194);
     width: 1120px;
     margin-top: 60px;
     margin-bottom: 60px;
-    padding: 20px;
     border-radius: 20px;
     font-family: "Pangolin";
 }
 
-.header-text {
-    height: 130px;
-    color: white;
-    font-size: 30px;
-}
-
-#main-header-text {
-    padding-top: 10px;
-    margin: 0;
+.header-area {
+    justify-content: space-between;
+    background-color: rgb(108, 173, 235);
+    border-radius: 20px 20px 0 0;
 }
 
 .search-area {
@@ -67,3 +59,11 @@ body {
     vertical-align: middle;
     color: lightblue;
 }
+
+#main-header-text {
+    color: white;
+    font-size: 60px;
+    margin: 0;
+    padding-bottom: 30px;
+}
+
