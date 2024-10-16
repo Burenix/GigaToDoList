@@ -31,9 +31,14 @@ body {
     border-radius: 20px 20px 0 0;
 }
 
+.content-area {
+    margin: 20px;
+}
+
 .search-area {
     display: flex;
     justify-content: flex-start;
+    margin-bottom: 20px;
 }
 
 .search-string {
@@ -47,6 +52,17 @@ body {
 
 .btn {
     cursor: pointer;
+}
+
+.filter-select-list {
+    vertical-align: middle;
+    height: 30px;
+    width: 120px;
+    border: 1px solid lightblue;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: white;
+    transition: .3s;
 }
 
 #search-button {
@@ -75,7 +91,22 @@ body {
     fill: rgb(255, 0, 0);
 }
 
-#SearchSVG {
+#submit-button {
+    vertical-align: middle;
+    height: 30px;
+    width: 30px;
+    border: 1px solid lightblue;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: white;
+}
+
+#searchSVG {
+    vertical-align: middle;
+    color: lightblue;
+}
+
+#submitSVG {
     vertical-align: middle;
     color: lightblue;
 }
