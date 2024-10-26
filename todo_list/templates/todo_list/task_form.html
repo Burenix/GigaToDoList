@@ -15,8 +15,17 @@
     <form method="post" action="">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Submit">
+        <input type="submit" value="Подтвердить">
     </form>
+
+    <script>
+        // Инициализация Flatpickr на поле с классом .flatpickr
+        flatpickr(".flatpickr", {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+            time_24hr: true,
+        });
+    </script>
     {% endblock content %}
 </body>
 </html>
