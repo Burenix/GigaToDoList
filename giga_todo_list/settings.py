@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'todo_list.apps.TodoListConfig',
+    'django_celery_beat',
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -50,6 +51,13 @@ EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'jokeryt.fix@yandex.ru'
 EMAIL_HOST_PASSWORD = 'htegdbgnerzedtkx'
 DEFAULT_FROM_EMAIL = 'jokeryt.fix@yandex.ru'
+
+# Настройки брокера
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+# Настройки периодических задач
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 SITE_ID = 1
 
