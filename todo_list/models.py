@@ -20,6 +20,7 @@ class Task(models.Model):
     reminder_time = models.DurationField(default=timedelta(hours=1))
     task_created = models.DateTimeField(auto_now_add=True)
     complexity = models.IntegerField(choices=COMPLEXITY_CHOICES)
+    reminder_sent = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return self.title
