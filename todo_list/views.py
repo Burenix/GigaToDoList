@@ -5,6 +5,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.utils.http import urlencode
 
 
+from todo_list.forms import TaskForm
 from todo_list.models import Task
 
 ################### CRUD ###################
@@ -44,7 +45,7 @@ class TaskList(LoginRequiredMixin, generic.ListView):
 
 class TaskCreate(LoginRequiredMixin, generic.CreateView):
     model = Task
-    fields = ['title', 'description', 'complexity', 'deadline', 'reminder_time']
+    form_class = TaskForm
     success_url = reverse_lazy('tasks')
 
     def form_valid(self, form):
@@ -77,7 +78,7 @@ class TaskDelete(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
 
 class TaskUpdate(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = Task
-    fields = ['title', 'description', 'status', 'deadline', 'reminder_time']
+    form_class = TaskForm
     success_url = reverse_lazy('tasks')
 
     def test_func(self):
