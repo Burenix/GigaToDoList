@@ -20,15 +20,12 @@ h2 {
     margin-top: 0;
 }
 
-a {
-    display: inline-block;
-}
-
 a:active, /* активная/посещенная ссылка */
 a:hover,
 a{
   text-decoration: none;
   color: blue;
+  display: inline-block;
 }
 
 .container {
@@ -125,7 +122,12 @@ a{
 
 .sign svg path {
     fill: white;
-  }
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+}
 
 #logout-text {
     position: absolute;
@@ -176,7 +178,6 @@ a{
     height: 45px;
     border: none;
     border-radius: 50%;
-    cursor: pointer;
     position: relative;
     overflow: hidden;
     transition-duration: .3s;
@@ -216,12 +217,27 @@ a{
     padding-right: 24px;
 }
 
-#searchSVG {
+#delete-button {
     vertical-align: middle;
-    color: lightblue;
+    height: 20px;
+    width: 20px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: whitesmoke;
+    padding: 0;
+    
 }
 
-#SearchSVG {
+.task-sign {
+    display: flex;
+    width: 15px;
+    height: 15px;
+    margin: auto;
+
+}
+
+#searchSVG {
     vertical-align: middle;
     color: lightblue;
 }
