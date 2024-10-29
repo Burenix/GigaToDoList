@@ -127,6 +127,18 @@ a{
 .task-item {
     display: flex;
     align-items: center;
+    
+}
+
+.task-item a + a {
+    margin-left: 5px;
+}
+
+.task-sign {
+    display: flex;
+    width: 15px;
+    height: 15px;
+    margin: auto;
 }
 
 #logout-text {
@@ -225,16 +237,18 @@ a{
     border-radius: 7px;
     cursor: pointer;
     background-color: whitesmoke;
-    padding: 0;
-    
+    padding: 0;   
 }
 
-.task-sign {
-    display: flex;
-    width: 15px;
-    height: 15px;
-    margin: auto;
-
+#update-button {
+    vertical-align: middle;
+    height: 20px;
+    width: 20px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: whitesmoke;
+    padding: 0;
 }
 
 #searchSVG {
