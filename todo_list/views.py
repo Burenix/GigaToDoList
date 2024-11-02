@@ -18,9 +18,33 @@ class TaskList(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         """
-        Возвращает список задач только для текущего авторизованного пользователя.
-        """
-        return Task.objects.filter(user=self.request.user)
+    Возвращает отфильтрованный и отсортированный список задач для текущего авторизованного пользователя.
+    """
+        # Извлекаем исходный набор задач только для текущего пользователя
+        queryset = Task.objects.filter(user=self.request.user)
+
+        # Получаем выбранный фильтр и текст поиска из GET-запроса
+        filter_value = self.request.GET.get('filter', 'all')
+        
+        search_text = self.request.GET.get('search_text')
+
+        # Применяем фильтр
+        if filter_value == 'complete':
+            queryset = queryset.filter(status=True)
+        elif filter_value == 'incomplete':
+            queryset = queryset.filter(status=False)
+        elif filter_value == 'deadline':
+            queryset = queryset.filter(status=False).order_by('deadline')
+        elif filter_value == 'simple':
+            queryset = queryset.filter(status=False).order_by('complexity')
+        elif filter_value == 'difficult':
+            queryset = queryset.filter(status=False).order_by('-complexity')
+
+        # Применяем поиск, если указан текст поиска
+        if search_text:
+            queryset = queryset.filter(title__icontains=search_text)
+
+        return queryset
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -92,82 +116,82 @@ class TaskUpdate(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
 
 ################## SEARCH ##################
 
-class Search(LoginRequiredMixin, generic.ListView):
-    template_name = 'todo_list/main.html'
-    context_object_name = 'tasks'
-    paginate_by = 5
+# class Search(LoginRequiredMixin, generic.ListView):
+#     template_name = 'todo_list/main.html'
+#     context_object_name = 'tasks'
+#     paginate_by = 5
 
-    def get_queryset(self):
-        search_text = self.request.GET.get('search_text')
-        if search_text:
-            return Task.objects.filter(title__icontains=search_text, user=self.request.user) # Объединяем условия
-        else:
-            return Task.objects.filter(user=self.request.user) # Если поиска нет, показываем все задачи пользователя
+#     def get_queryset(self):
+#         search_text = self.request.GET.get('search_text')
+#         if search_text:
+#             return Task.objects.filter(title__icontains=search_text, user=self.request.user) # Объединяем условия
+#         else:
+#             return Task.objects.filter(user=self.request.user) # Если поиска нет, показываем все задачи пользователя
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['q'] = self.request.GET.get('q')
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['q'] = self.request.GET.get('q')
         
-        # Пагинация
-        paginator = Paginator(self.get_queryset(), self.paginate_by)
-        page = self.request.GET.get('page')
-        try:
-            tasks = paginator.page(page)
-        except PageNotAnInteger:
-            tasks = paginator.page(1)
-        except EmptyPage:
-            tasks = paginator.page(paginator.num_pages)
+#         # Пагинация
+#         paginator = Paginator(self.get_queryset(), self.paginate_by)
+#         page = self.request.GET.get('page')
+#         try:
+#             tasks = paginator.page(page)
+#         except PageNotAnInteger:
+#             tasks = paginator.page(1)
+#         except EmptyPage:
+#             tasks = paginator.page(paginator.num_pages)
 
-        context['tasks'] = tasks
-        context['paginator'] = paginator
-        context['page_obj'] = tasks
+#         context['tasks'] = tasks
+#         context['paginator'] = paginator
+#         context['page_obj'] = tasks
 
-        return context
+#         return context
     
 ################## SEARCH ##################
 
 ################## FILTER ##################
 
-class TaskFilter(LoginRequiredMixin, generic.ListView):
-    template_name = 'todo_list/main.html'
-    context_object_name = 'tasks'
-    paginate_by = 5
+# class TaskFilter(LoginRequiredMixin, generic.ListView):
+#     template_name = 'todo_list/main.html'
+#     context_object_name = 'tasks'
+#     paginate_by = 5
 
-    def get_queryset(self):
-        queryset = Task.objects.all()
+#     def get_queryset(self):
+#         queryset = Task.objects.all()
 
-        filter = self.request.GET.get('filter', 'all') 
+#         filter = self.request.GET.get('filter', 'all') 
 
-        if filter == 'complete':
-            return queryset.filter(status__exact=True)
-        elif filter == 'incomplete':
-            return queryset.filter(status__exact=False)
-        elif filter == 'deadline':
-            return queryset.filter(status__exact=False).order_by('deadline')
-        elif filter == 'simple':
-            return queryset.filter(status__exact=False).order_by('complexity')
-        elif filter == 'difficult':
-            return queryset.filter(status__exact=False).order_by('-complexity')
-        else:
-            return queryset
+#         if filter == 'complete':
+#             return queryset.filter(status__exact=True)
+#         elif filter == 'incomplete':
+#             return queryset.filter(status__exact=False)
+#         elif filter == 'deadline':
+#             return queryset.filter(status__exact=False).order_by('deadline')
+#         elif filter == 'simple':
+#             return queryset.filter(status__exact=False).order_by('complexity')
+#         elif filter == 'difficult':
+#             return queryset.filter(status__exact=False).order_by('-complexity')
+#         else:
+#             return queryset
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
 
-        # Пагинация
-        paginator = Paginator(self.get_queryset(), self.paginate_by)
-        page = self.request.GET.get('page')
-        try:
-            tasks = paginator.page(page)
-        except PageNotAnInteger:
-            tasks = paginator.page(1)
-        except EmptyPage:
-            tasks = paginator.page(paginator.num_pages)
+#         # Пагинация
+#         paginator = Paginator(self.get_queryset(), self.paginate_by)
+#         page = self.request.GET.get('page')
+#         try:
+#             tasks = paginator.page(page)
+#         except PageNotAnInteger:
+#             tasks = paginator.page(1)
+#         except EmptyPage:
+#             tasks = paginator.page(paginator.num_pages)
 
-        context['tasks'] = tasks
-        context['paginator'] = paginator
-        context['page_obj'] = tasks
+#         context['tasks'] = tasks
+#         context['paginator'] = paginator
+#         context['page_obj'] = tasks
 
-        return context  
+#         return context  
 
 ################## FILTER ##################
