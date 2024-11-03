@@ -1,14 +1,14 @@
 from django.contrib.auth.views import LoginView, PasswordChangeView, PasswordResetView, PasswordResetConfirmView
-from django.views.generic import TemplateView, CreateView
-from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth import get_user_model, login
 from django.contrib.auth.tokens import default_token_generator
+from django.views import View
+from django.views.generic import TemplateView, CreateView
+from django.utils.encoding import force_str, force_bytes
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.urls import reverse_lazy
 from django.core.mail import send_mail
 from django.shortcuts import redirect
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_str, force_bytes
-from django.views import View
 
 
 from accounts.forms import UserForgotPasswordForm, UserPasswordChangeForm, UserRegisterForm, UserLoginForm, UserSetNewPasswordForm

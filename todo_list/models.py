@@ -3,11 +3,9 @@ from django.db import models
 from django.conf import settings
 
 COMPLEXITY_CHOICES = (
-    (1, 'Easy'),
+    (1, 'Low'),
     (2, 'Medium'),
-    (3, 'Hard'),
-    (4, 'Very hard'),
-    (5, 'Impossible'),
+    (3, 'High'),
 )
 
 # Create your models here.
@@ -19,7 +17,7 @@ class Task(models.Model):
     deadline = models.DateTimeField()
     reminder_time = models.DurationField(default=timedelta(hours=1))
     task_created = models.DateTimeField(auto_now_add=True)
-    complexity = models.IntegerField(choices=COMPLEXITY_CHOICES)
+    priority = models.IntegerField(choices=COMPLEXITY_CHOICES)
     reminder_sent = models.BooleanField(default=False)
 
     def __str__(self) -> str:
