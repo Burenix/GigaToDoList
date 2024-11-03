@@ -17,7 +17,7 @@ class Task(models.Model):
     description = models.TextField(max_length=252)
     status = models.BooleanField(default=False)
     deadline = models.DateTimeField()
-    reminder_time = models.DurationField(default=timedelta(hours=1))
+    reminder_time = models.DurationField()
     task_created = models.DateTimeField(auto_now_add=True)
     priority = models.IntegerField(choices=COMPLEXITY_CHOICES)
     reminder_sent = models.BooleanField(default=False)

@@ -7,4 +7,5 @@ class TaskForm(forms.ModelForm):
         fields = ['title', 'description', 'deadline', 'reminder_time', 'priority']
         widgets = {
             'deadline': forms.DateTimeInput(attrs={'class': 'flatpickr'}),
+            'reminder_time': forms.TimeInput(attrs={'class': 'flatpickr2'}),
         }
