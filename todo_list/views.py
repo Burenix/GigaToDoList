@@ -2,7 +2,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.views import generic
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.utils.http import urlencode
 
 
 from todo_list.forms import TaskForm
@@ -18,8 +17,8 @@ class TaskList(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         """
-    Возвращает отфильтрованный и отсортированный список задач для текущего авторизованного пользователя.
-    """
+        Возвращает отфильтрованный и отсортированный список задач для текущего авторизованного пользователя.
+        """
         # Извлекаем исходный набор задач только для текущего пользователя
         queryset = Task.objects.filter(user=self.request.user)
 
@@ -35,10 +34,10 @@ class TaskList(LoginRequiredMixin, generic.ListView):
             queryset = queryset.filter(status=False)
         elif filter_value == 'deadline':
             queryset = queryset.filter(status=False).order_by('deadline')
-        elif filter_value == 'simple':
-            queryset = queryset.filter(status=False).order_by('complexity')
-        elif filter_value == 'difficult':
-            queryset = queryset.filter(status=False).order_by('-complexity')
+        elif filter_value == 'low':
+            queryset = queryset.filter(status=False).order_by('priority')
+        elif filter_value == 'high':
+            queryset = queryset.filter(status=False).order_by('-priority')
 
         # Применяем поиск, если указан текст поиска
         if search_text:
@@ -113,85 +112,3 @@ class TaskUpdate(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
         return super().get_object().user == self.request.user
 
 ################### CRUD ###################
-
-################## SEARCH ##################
-
-# class Search(LoginRequiredMixin, generic.ListView):
-#     template_name = 'todo_list/main.html'
-#     context_object_name = 'tasks'
-#     paginate_by = 5
-
-#     def get_queryset(self):
-#         search_text = self.request.GET.get('search_text')
-#         if search_text:
-#             return Task.objects.filter(title__icontains=search_text, user=self.request.user) # Объединяем условия
-#         else:
-#             return Task.objects.filter(user=self.request.user) # Если поиска нет, показываем все задачи пользователя
-    
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['q'] = self.request.GET.get('q')
-        
-#         # Пагинация
-#         paginator = Paginator(self.get_queryset(), self.paginate_by)
-#         page = self.request.GET.get('page')
-#         try:
-#             tasks = paginator.page(page)
-#         except PageNotAnInteger:
-#             tasks = paginator.page(1)
-#         except EmptyPage:
-#             tasks = paginator.page(paginator.num_pages)
-
-#         context['tasks'] = tasks
-#         context['paginator'] = paginator
-#         context['page_obj'] = tasks
-
-#         return context
-    
-################## SEARCH ##################
-
-################## FILTER ##################
-
-# class TaskFilter(LoginRequiredMixin, generic.ListView):
-#     template_name = 'todo_list/main.html'
-#     context_object_name = 'tasks'
-#     paginate_by = 5
-
-#     def get_queryset(self):
-#         queryset = Task.objects.all()
-
-#         filter = self.request.GET.get('filter', 'all') 
-
-#         if filter == 'complete':
-#             return queryset.filter(status__exact=True)
-#         elif filter == 'incomplete':
-#             return queryset.filter(status__exact=False)
-#         elif filter == 'deadline':
-#             return queryset.filter(status__exact=False).order_by('deadline')
-#         elif filter == 'simple':
-#             return queryset.filter(status__exact=False).order_by('complexity')
-#         elif filter == 'difficult':
-#             return queryset.filter(status__exact=False).order_by('-complexity')
-#         else:
-#             return queryset
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-
-#         # Пагинация
-#         paginator = Paginator(self.get_queryset(), self.paginate_by)
-#         page = self.request.GET.get('page')
-#         try:
-#             tasks = paginator.page(page)
-#         except PageNotAnInteger:
-#             tasks = paginator.page(1)
-#         except EmptyPage:
-#             tasks = paginator.page(paginator.num_pages)
-
-#         context['tasks'] = tasks
-#         context['paginator'] = paginator
-#         context['page_obj'] = tasks
-
-#         return context  
-
-################## FILTER ##################
