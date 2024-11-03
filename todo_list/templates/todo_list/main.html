@@ -40,8 +40,8 @@
                     <select class="filter-select-list" id="filter-select" name="filter" onchange="this.form.submit()">
                         <option value="all" {% if request.GET.filter == 'all' %}selected{% endif %}>Все</option>
                         <option value="deadline" {% if request.GET.filter == 'deadline' %}selected{% endif %}>Дедлайн</option>
-                        <option value="complete" {% if request.GET.filter == 'complete' %}selected{% endif %}>Завершённые</option>
-                        <option value="incomplete" {% if request.GET.filter == 'incomplete' %}selected{% endif %}>Незавершённые</option>
+                        <option value="complete" {% if request.GET.filter == 'complete' %}selected{% endif %}>Выполненные</option>
+                        <option value="incomplete" {% if request.GET.filter == 'incomplete' %}selected{% endif %}>Невыполненные</option>
                         <option value="low" {% if request.GET.filter == 'low' %}selected{% endif %}>Низкий приоритет</option>
                         <option value="high" {% if request.GET.filter == 'high' %}selected{% endif %}>Высокий приоритет</option>
                     </select>

@@ -1,6 +1,8 @@
-from datetime import timedelta
+from datetime import datetime, timedelta
 from django.db import models
 from django.conf import settings
+from django.forms import ValidationError
+import pytz
 
 COMPLEXITY_CHOICES = (
     (1, 'Low'),
@@ -23,5 +25,18 @@ class Task(models.Model):
     def __str__(self) -> str:
         return self.title
     
+    def clean(self):
+        moscow_tz = pytz.timezone('Europe/Moscow')
+
+        # Проверка deadline
+        if self.deadline < datetime.now(moscow_tz):
+            raise ValidationError('Срок выполнения не может быть в прошлом.')
+        
+        # Проверка reminder_time
+        if self.reminder_time > (self.deadline - datetime.now(moscow_tz)):
+            raise ValidationError('Время напоминания не может быть после срока выполнения.')
+        
+        return super().clean()
+
     class Meta:
         ordering = ['status']
