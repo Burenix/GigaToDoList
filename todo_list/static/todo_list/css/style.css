@@ -81,6 +81,78 @@ a{
     cursor: pointer;
 }
 
+.sign {
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign svg {
+    width: 25px;
+}
+
+.sign svg path {
+    fill: white;
+}
+
+.task-area {
+    padding-top: 5px;
+    width: 30%;
+}
+
+.task-item {
+    display: flex;
+    position: relative;
+    vertical-align: middle;
+    height: 20px;
+    width: auto;
+    margin-bottom: 5px;
+    background-color: whitesmoke;
+    border: 1px solid;
+    border-color: rgb(108, 173, 235);
+    border-radius: 3px;
+}
+
+.task-sign {
+    display: flex;
+    width: 15px;
+    height: 15px;
+    margin: auto;
+}
+
+.task-name {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    color: black;
+}
+
+.task-buttons {
+    display: flex;
+    position: absolute;
+    align-self: flex-end;
+    left: 82%;
+}
+
+.task-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    height: 20px;
+    width: 20px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+a.link-update + a.link-delete {
+    margin-left: 5px;
+}
+
 #search-button {
     vertical-align: middle;
     height: 30px;
@@ -106,39 +178,6 @@ a{
     overflow: hidden;
     transition-duration: .3s;
     background-color: transparent;
-}
-
-.sign {
-    width: 100%;
-    transition-duration: .3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.sign svg {
-    width: 25px;
-}
-
-.sign svg path {
-    fill: white;
-}
-
-.task-item {
-    display: flex;
-    align-items: center;
-    
-}
-
-.task-item a + a {
-    margin-left: 5px;
-}
-
-.task-sign {
-    display: flex;
-    width: 15px;
-    height: 15px;
-    margin: auto;
 }
 
 #logout-text {
@@ -229,26 +268,13 @@ a{
     padding-right: 24px;
 }
 
-#delete-button {
-    vertical-align: middle;
-    height: 20px;
-    width: 20px;
+#detail-button {
+    display: flex;
+    align-items: center;
     border: none;
-    border-radius: 7px;
-    cursor: pointer;
-    background-color: whitesmoke;
-    padding: 0;   
-}
-
-#update-button {
-    vertical-align: middle;
-    height: 20px;
-    width: 20px;
-    border: none;
-    border-radius: 7px;
-    cursor: pointer;
-    background-color: whitesmoke;
-    padding: 0;
+    border-radius: 10px;
+    height: 10px;
+    background-color: transparent;
 }
 
 #searchSVG {
