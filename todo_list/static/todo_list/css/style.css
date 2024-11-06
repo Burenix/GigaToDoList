@@ -20,6 +20,14 @@ h2 {
     margin-top: 0;
 }
 
+a:active, /* активная/посещенная ссылка */
+a:hover,
+a{
+  text-decoration: none;
+  color: blue;
+  display: inline-block;
+}
+
 .container {
     background-color: whitesmoke;
     width: 900px;
@@ -73,6 +81,77 @@ h2 {
     cursor: pointer;
 }
 
+.sign {
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign svg {
+    width: 25px;
+}
+
+.sign svg path {
+    fill: white;
+}
+
+.task-area {
+    padding-top: 5px;
+    width: 30%;
+}
+
+.task-item {
+    display: flex;
+    position: relative;
+    vertical-align: middle;
+    height: 20px;
+    width: auto;
+    margin-bottom: 5px;
+    background-color: whitesmoke;
+    border-bottom: 1px solid;
+    border-color: rgb(161, 201, 238);
+}
+
+.task-sign {
+    display: flex;
+    width: 15px;
+    height: 15px;
+    margin: auto;
+}
+
+.task-name {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    color: black;
+}
+
+.task-buttons {
+    display: flex;
+    position: absolute;
+    align-self: flex-end;
+    left: 82%;
+}
+
+.task-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    height: 20px;
+    width: 20px;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+a.link-update + a.link-delete {
+    margin-left: 5px;
+}
+
 #search-button {
     vertical-align: middle;
     height: 30px;
@@ -99,22 +178,6 @@ h2 {
     transition-duration: .3s;
     background-color: transparent;
 }
-
-.sign {
-    width: 100%;
-    transition-duration: .3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.sign svg {
-    width: 25px;
-}
-
-.sign svg path {
-    fill: white;
-  }
 
 #logout-text {
     position: absolute;
@@ -156,12 +219,64 @@ h2 {
     background-color: white;
 }
 
-#searchSVG {
-    vertical-align: middle;
-    color: lightblue;
+#create-button {
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    background-color: rgb(38, 121, 199);
+    color: white;
 }
 
-#SearchSVG {
+#create-text {
+    display: flex;
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-align: center;
+    transition-duration: .3s;
+}
+
+#create-button:hover {
+    border-radius: 50em;
+    width: 120px;
+    transition-duration: .3s;
+}
+
+#create-button:hover .sign {
+    width: 44%;
+    rotate: 200grad;
+    transition-duration: .3s;
+}
+
+#create-button:hover .text {
+    opacity: 1;
+    width: 40%;
+    transition-duration: .3s;
+    padding-right: 24px;
+}
+
+#detail-button {
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+    height: 10px;
+    background-color: transparent;
+}
+
+#searchSVG {
     vertical-align: middle;
     color: lightblue;
 }
