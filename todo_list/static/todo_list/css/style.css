@@ -110,9 +110,8 @@ a{
     width: auto;
     margin-bottom: 5px;
     background-color: whitesmoke;
-    border: 1px solid;
-    border-color: rgb(108, 173, 235);
-    border-radius: 3px;
+    border-bottom: 1px solid;
+    border-color: rgb(161, 201, 238);
 }
 
 .task-sign {
