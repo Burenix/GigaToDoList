@@ -89,26 +89,38 @@
 
     
                 <div class="pagination-wrap">
-                    <ul>
+                    <ul class="pagination-area">
                         {% if page_obj.has_previous %}
                             <li class="page-num">
-                                <a href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">&lt;</a>
+                                <button class="page-buttons" id="page-prev-btn">
+                                    <a  class="link-pagination" href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">&lt;</a>
+                                </button>
                             </li>
                         {% endif %}
     
                         {% for p in paginator.page_range %}
                             {% if page_obj.number == p %}
-                                <li class="page-num page-num-selected">{{ p }}</li>
+                                <li class="page-num page-num-selected">
+                                    <button class="page-buttons" id="page-slctd-btn">
+                                        {{ p }}
+                                    </button>
+                                </li>
                             {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
                                 <li class="page-num">
-                                    <a href="?{{ request.GET.urlencode }}&page={{ p }}">{{ p }}</a>
+                                    <a href="?{{ request.GET.urlencode }}&page={{ p }}">
+                                        <button class="page-buttons" id="page-btn">
+                                            {{ p }}
+                                        </button>
+                                    </a>
                                 </li>
                             {% endif %}
                         {% endfor %}
     
                         {% if page_obj.has_next %}
                             <li class="page-num">
-                                <a href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">&gt;</a>
+                                <button class="page-buttons" id="page-next-btn">
+                                    <a class="link-pagination" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">&gt;</a>
+                                </button>
                             </li>
                         {% endif %}
                     </ul>
