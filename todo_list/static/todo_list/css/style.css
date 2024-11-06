@@ -152,6 +152,55 @@ a.link-update + a.link-delete {
     margin-left: 5px;
 }
 
+.pagination-wrap {
+    list-style-type: none;
+    display: flex;
+}
+
+.pagination-area {
+    overflow: hidden;
+    list-style-type: none;
+    display: flex;
+    padding-left: 0;
+    border: 1px solid rgb(108, 173, 235);
+    border-radius: 5px;
+}
+
+.page-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    background-color: transparent;
+    color: rgb(87, 163, 235);
+    border: 1px;
+    border-color: rgb(108, 173, 235);
+    border-right-style: solid;
+    border-left-style: solid;
+    transition: .3s;
+}
+
+.link-pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: transparent;
+    color: rgb(87, 163, 235);
+    transition: .3s;
+}
+
+.page-buttons:hover {
+    background-color: rgb(108, 173, 235);
+    color: white;
+    .link-pagination {
+        color: white;
+    }
+}
+
+
 #search-button {
     vertical-align: middle;
     height: 30px;
@@ -274,6 +323,23 @@ a.link-update + a.link-delete {
     border-radius: 10px;
     height: 10px;
     background-color: transparent;
+}
+
+#page-slctd-btn {
+    background-color: rgb(108, 173, 235);
+    color: white;
+}
+
+#page-prev-btn {
+    border: 1px;
+    border-color: rgb(108, 173, 235);
+    border-right-style: solid;
+}
+
+#page-next-btn {
+    border: 1px;
+    border-color: rgb(108, 173, 235);
+    border-left-style: solid;
 }
 
 #searchSVG {
