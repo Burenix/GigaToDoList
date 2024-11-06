@@ -92,9 +92,9 @@
                     <ul class="pagination-area">
                         {% if page_obj.has_previous %}
                             <li class="page-num">
-                                <button class="page-buttons" id="page-prev-btn">
-                                    <a  class="link-pagination" href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">&lt;</a>
-                                </button>
+                                <a  class="link-pagination" href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">
+                                    <button class="page-buttons" id="page-prev-btn">&lt;</button>
+                                </a>
                             </li>
                         {% endif %}
     
@@ -118,9 +118,9 @@
     
                         {% if page_obj.has_next %}
                             <li class="page-num">
-                                <button class="page-buttons" id="page-next-btn">
-                                    <a class="link-pagination" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">&gt;</a>
-                                </button>
+                                <a class="link-pagination" href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">
+                                    <button class="page-buttons" id="page-next-btn">&gt;</button>
+                                </a>
                             </li>
                         {% endif %}
                     </ul>
