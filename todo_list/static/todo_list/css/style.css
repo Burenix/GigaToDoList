@@ -16,8 +16,9 @@ body {
     background-size: 100% 100%;
 }
 
+h1,
 h2 {
-    margin-top: 0;
+    margin: 0;
 }
 
 a:active, /* активная/посещенная ссылка */
@@ -45,6 +46,14 @@ a{
     justify-content: space-between;
     background-color: rgb(108, 173, 235);
     border-radius: 20px 20px 0 0;
+}
+
+.header-text {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 60px;
+    padding: 30px;
 }
 
 .content-area {
@@ -385,10 +394,9 @@ a.link-update + a.link-delete {
 }
 
 #main-header-text {
-    color: white;
-    font-size: 60px;
-    margin: 0;
-    padding-bottom: 30px;
+    display: flex;
+    justify-content: start;
+    padding-top: 0;
     padding-left: 20px;
 }
 
