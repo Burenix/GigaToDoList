@@ -51,10 +51,14 @@ a{
     padding: 20px;
 }
 
+.search-filter-area {
+    display: flex;
+}
+
 .search-area {
     display: flex;
     justify-content: flex-start;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 .search-string {
@@ -66,15 +70,48 @@ a{
     font-size: 13px;
 }
 
+.filter-wrap {
+    display: flex;
+    margin-left: 5px;
+}
+
+.filter-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    border: 1px solid lightblue;
+    border-radius: 7px;
+    background-color: white;
+    overflow: hidden;
+    list-style-type: none;
+}
+
 .filter-select-list {
     vertical-align: middle;
     height: 30px;
-    width: 120px;
-    border: 1px solid lightblue;
-    border-radius: 7px;
+    width: 150px;
+    border: none;
     cursor: pointer;
     background-color: white;
+    /* для значка фильтра 
+    border: 1px;
+    border-color: lightblue;
+    border-left-style: solid; */
     transition: .3s;
+}
+
+.filter-select-list:disabled {
+    list-style-type: none;
+    border: none;
+}
+
+.svg-filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
 }
 
 .btn {
@@ -181,16 +218,6 @@ a.link-update + a.link-delete {
     border-left-style: solid;
     transition: .3s;
 }
-
-/* .link-pagination{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    background-color: transparent;
-    color: rgb(87, 163, 235);
-    transition: .3s;
-} */
 
 .page-buttons:hover {
     background-color: rgb(108, 173, 235);
@@ -344,6 +371,12 @@ a.link-update + a.link-delete {
 #searchSVG {
     vertical-align: middle;
     color: lightblue;
+}
+
+#filterSVG {
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
 }
 
 #main-header-text {

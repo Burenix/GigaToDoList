@@ -25,33 +25,34 @@
             </div>
         </div>
         <div class="content-area">
-            <div class="search-area">
-                <form action="{% url 'task-search' %}" method="GET">
-                    <input class="search-string" type="search" name="search_text" value="{{ request.GET.search_text }}">
-                    <button class="btn" id="search-button" type="submit">
-                        <svg id="searchSVG" fill="#3a8199" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M31.707 30.282l-9.717-9.776c1.811-2.169 2.902-4.96 2.902-8.007 0-6.904-5.596-12.5-12.5-12.5s-12.5 5.596-12.5 12.5 5.596 12.5 12.5 12.5c3.136 0 6.002-1.158 8.197-3.067l9.703 9.764c0.39 0.39 1.024 0.39 1.415 0s0.39-1.023 0-1.415zM12.393 23.016c-5.808 0-10.517-4.709-10.517-10.517s4.708-10.517 10.517-10.517c5.808 0 10.516 4.708 10.516 10.517s-4.709 10.517-10.517 10.517z"></path></svg>
-                    </button>
-                    <input type="hidden" name="filter" value="{{ request.GET.filter }}">
-                </form>
-            </div>
-            <div>
-                <form action="{% url 'task-filter' %}" method="GET">
-                    <label for="filter-select">Фильтровать по:</label>
-                    <select class="filter-select-list" id="filter-select" name="filter" onchange="this.form.submit()">
-                        <option value="all" {% if request.GET.filter == 'all' %}selected{% endif %}>Все</option>
-                        <option value="deadline" {% if request.GET.filter == 'deadline' %}selected{% endif %}>Дедлайн</option>
-                        <option value="complete" {% if request.GET.filter == 'complete' %}selected{% endif %}>Выполненные</option>
-                        <option value="incomplete" {% if request.GET.filter == 'incomplete' %}selected{% endif %}>Невыполненные</option>
-                        <option value="low" {% if request.GET.filter == 'low' %}selected{% endif %}>Низкий приоритет</option>
-                        <option value="high" {% if request.GET.filter == 'high' %}selected{% endif %}>Высокий приоритет</option>
-                    </select>
-                    <!-- <button class="btn" id="submit-button">
-                        <div>
-                            <svg id="submitSVG" fill="#3a8199" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 72 72" enable-background="new 0 0 72 72" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M24.014,70.462c-2.617,0-5.073-1.016-6.917-2.859L2.175,53.877c-1.908-1.906-2.926-4.364-2.926-6.979 s1.018-5.072,2.866-6.92c1.849-1.849,4.307-2.866,6.921-2.866c2.591,0,5.029,1,6.872,2.818l8.102,7.109L55.861,4.618 c0.057-0.075,0.119-0.146,0.186-0.213c1.849-1.85,4.307-2.867,6.921-2.867s5.072,1.018,6.921,2.867 c3.784,3.784,3.815,9.923,0.093,13.747L31.697,67.416c-0.051,0.065-0.106,0.128-0.165,0.188c-1.914,1.912-4.498,2.926-7.214,2.854 C24.216,70.46,24.116,70.462,24.014,70.462z M9.037,41.112c-1.546,0-2.999,0.602-4.093,1.695C3.851,43.9,3.25,45.353,3.25,46.898 s0.602,3,1.694,4.093l14.922,13.726c1.148,1.146,2.6,1.914,4.148,1.914l0.227,0.164c0.05,0,0.1,0,0.151,0l0.221-0.164 c1.51,0,2.929-0.654,4.008-1.69l38.275-49.294c0.051-0.065,0.105-0.148,0.165-0.207c2.256-2.258,2.256-5.939,0-8.195 c-1.094-1.094-2.547-1.701-4.093-1.701c-1.502,0-2.917,0.566-3.999,1.602L25.914,51.169c-0.335,0.445-0.84,0.73-1.394,0.787 c-0.551,0.057-1.106-0.118-1.525-0.486l-9.771-8.573c-0.032-0.028-0.064-0.058-0.095-0.089 C12.036,41.714,10.583,41.112,9.037,41.112z"></path> </g> </g></svg>
+            <div class="search-filter-area">
+                <div class="search-area">
+                    <form action="{% url 'task-search' %}" method="GET">
+                        <input class="search-string" type="search" name="search_text" value="{{ request.GET.search_text }}">
+                        <button class="btn" id="search-button" type="submit">
+                            <svg id="searchSVG" fill="#3a8199" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M31.707 30.282l-9.717-9.776c1.811-2.169 2.902-4.96 2.902-8.007 0-6.904-5.596-12.5-12.5-12.5s-12.5 5.596-12.5 12.5 5.596 12.5 12.5 12.5c3.136 0 6.002-1.158 8.197-3.067l9.703 9.764c0.39 0.39 1.024 0.39 1.415 0s0.39-1.023 0-1.415zM12.393 23.016c-5.808 0-10.517-4.709-10.517-10.517s4.708-10.517 10.517-10.517c5.808 0 10.516 4.708 10.516 10.517s-4.709 10.517-10.517 10.517z"></path></svg>
+                        </button>
+                        <input type="hidden" name="filter" value="{{ request.GET.filter }}">
+                    </form>
+                </div>
+                <div class="filter-wrap">
+                    <form action="{% url 'task-filter' %}" method="GET">
+                        <div class="filter-area">
+                            <!-- <div class="svg-filter">
+                                <svg id="filterSVG" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M3 4.6C3 4.03995 3 3.75992 3.10899 3.54601C3.20487 3.35785 3.35785 3.20487 3.54601 3.10899C3.75992 3 4.03995 3 4.6 3H19.4C19.9601 3 20.2401 3 20.454 3.10899C20.6422 3.20487 20.7951 3.35785 20.891 3.54601C21 3.75992 21 4.03995 21 4.6V6.33726C21 6.58185 21 6.70414 20.9724 6.81923C20.9479 6.92127 20.9075 7.01881 20.8526 7.10828C20.7908 7.2092 20.7043 7.29568 20.5314 7.46863L14.4686 13.5314C14.2957 13.7043 14.2092 13.7908 14.1474 13.8917C14.0925 13.9812 14.0521 14.0787 14.0276 14.1808C14 14.2959 14 14.4182 14 14.6627V17L10 21V14.6627C10 14.4182 10 14.2959 9.97237 14.1808C9.94787 14.0787 9.90747 13.9812 9.85264 13.8917C9.7908 13.7908 9.70432 13.7043 9.53137 13.5314L3.46863 7.46863C3.29568 7.29568 3.2092 7.2092 3.14736 7.10828C3.09253 7.01881 3.05213 6.92127 3.02763 6.81923C3 6.70414 3 6.58185 3 6.33726V4.6Z" stroke="#6cadeb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                            </div> -->
+                            <select class="filter-select-list" id="filter-select" name="filter" onchange="this.form.submit()">
+                                <option value="all" {% if request.GET.filter == 'all' %}selected{% endif %}>Все</option>
+                                <option value="deadline" {% if request.GET.filter == 'deadline' %}selected{% endif %}>Дедлайн</option>
+                                <option value="complete" {% if request.GET.filter == 'complete' %}selected{% endif %}>Выполненные</option>
+                                <option value="incomplete" {% if request.GET.filter == 'incomplete' %}selected{% endif %}>Невыполненные</option>
+                                <option value="low" {% if request.GET.filter == 'low' %}selected{% endif %}>Низкий приоритет</option>
+                                <option value="high" {% if request.GET.filter == 'high' %}selected{% endif %}>Высокий приоритет</option>
+                            </select>
+                            <input type="hidden" name="search_text" value="{{ request.GET.search_text }}">
                         </div>
-                    </button> -->
-                    <input type="hidden" name="search_text" value="{{ request.GET.search_text }}">
-                </form>
+                    </form>
+                </div>
             </div>
             <div class="tasks-container">
                 <div class="task-area">
