@@ -15,11 +15,12 @@ class UserLoginForm(AuthenticationForm):
         """
         super().__init__(*args, **kwargs)
         for field in self.fields:
-            self.fields['username'].widget.attrs['placeholder'] = 'Логин пользователя'
-            self.fields['password'].widget.attrs['placeholder'] = 'Пароль пользователя'
-            self.fields['username'].label = 'Логин'
+            self.fields['username'].widget.attrs['placeholder'] = 'Логин'
+            self.fields['password'].widget.attrs['placeholder'] = 'Пароль'
+            self.fields['username'].label = ''
+            self.fields['password'].label = ''
             self.fields[field].widget.attrs.update({
-                'class': 'form-control',
+                'class': 'form-control-logpass-input',
                 'autocomplete': 'off'
             })
 

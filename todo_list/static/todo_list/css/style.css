@@ -29,6 +29,14 @@ a{
   display: inline-block;
 }
 
+/* input:-webkit-autofill {
+    background-color: transparent;
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+    transition: background-color 5000s ease-in-out 0s;
+    color: white;
+    fill: white;
+} */
+
 .container {
     background-color: whitesmoke;
     width: 900px;
@@ -240,6 +248,60 @@ a.link-update + a.link-delete {
     transition: .1s;
     background-color: rgb(64, 127, 187);
 }
+
+.logpass-wrap {
+    margin-right: 300px;
+    font-size: 23px;
+}
+
+.logpass-area {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.logpass-field {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    width: 70%;
+    margin: 0;
+    border: none;
+    border-radius: 25px;
+    background-color: rgb(108, 173, 235);
+    color: white;
+    overflow: hidden;
+}
+
+.logpass-svg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 5px;
+    width: 20px;
+    height: 20px;
+}
+
+.form-control-logpass-input {
+    width: 95%;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    color: white;
+    font-size: 17px;
+}
+
+.form-control-logpass-input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important; /* Убираем желтый фон */
+    -webkit-text-fill-color: white !important; /* Белый цвет текста */
+    color: white !important; /* Принудительно устанавливаем белый шрифт */
+    font-size: 17px !important; /* Принудительно устанавливаем размер шрифта */
+    font-family: inherit !important; /* Наследуем шрифт из основного класса */
+    transition: background-color 50000s ease-in-out 0s, color 50000s ease-in-out 0s;
+}
+
 
 
 #search-button {
