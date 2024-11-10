@@ -29,13 +29,20 @@ a{
   display: inline-block;
 }
 
-/* input:-webkit-autofill {
-    background-color: transparent;
-    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
-    transition: background-color 5000s ease-in-out 0s;
-    color: white;
-    fill: white;
-} */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important; /* Убираем желтый фон */
+    -webkit-text-fill-color: rgb(12, 12, 12) !important; /* Принудительно белый цвет текста */
+    font-family: 'Roboto', sans-serif !important; /* Принудительно шрифт Roboto */
+    font-size: 17px !important; /* Принудительно размер шрифта */
+}
+
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 17px !important;
+    color: rgb(12, 12, 12) !important;
+}
 
 .container {
     background-color: whitesmoke;
@@ -44,6 +51,11 @@ a{
     margin-bottom: auto;
     border-radius: 20px;
     font-family: "Roboto, sans-serif";
+}
+
+.user-login-page .container {
+    width: 800px;
+    height: 342px;
 }
 
 .text {
@@ -249,36 +261,36 @@ a.link-update + a.link-delete {
     background-color: rgb(64, 127, 187);
 }
 
-.logpass-wrap {
-    margin-right: 300px;
-    font-size: 23px;
+.logpass {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
 }
 
 .logpass-area {
-    display: flex;
-    align-items: center;
     width: 100%;
-    margin-bottom: 20px;
+    border: solid 1px;
+    border-radius: 5px;
+    border-color: rgb(108, 173, 235);
+    background-color: rgb(255, 255, 255);
+}
+
+.logpass-area + .logpass-area {
+    margin-top: 20px;
 }
 
 .logpass-field {
     display: flex;
     align-items: center;
     height: 30px;
-    width: 70%;
     margin: 0;
-    border: none;
-    border-radius: 25px;
-    background-color: rgb(108, 173, 235);
-    color: white;
-    overflow: hidden;
 }
 
 .logpass-svg {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-left: 5px;
+    padding: 0;
+    margin: 3px;
     width: 20px;
     height: 20px;
 }
@@ -289,20 +301,25 @@ a.link-update + a.link-delete {
     border: none;
     border-radius: 10px;
     background-color: transparent;
-    color: white;
+    color: rgb(12, 12, 12);
     font-size: 17px;
 }
 
 .form-control-logpass-input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px transparent inset !important; /* Убираем желтый фон */
-    -webkit-text-fill-color: white !important; /* Белый цвет текста */
-    color: white !important; /* Принудительно устанавливаем белый шрифт */
+    -webkit-text-fill-color: rgb(12, 12, 12) !important; /* цвет текста */
+    color: rgb(12, 12, 12) !important; /* Принудительно устанавливаем black шрифт */
     font-size: 17px !important; /* Принудительно устанавливаем размер шрифта */
-    font-family: inherit !important; /* Наследуем шрифт из основного класса */
+    font-family: "Roboto", sans-serif !important; /* Наследуем шрифт из основного класса */
     transition: background-color 50000s ease-in-out 0s, color 50000s ease-in-out 0s;
 }
 
-
+#content-area-user-login {
+    display: flex;
+    flex-direction: column; /* Элементы будут выстраиваться по вертикали */
+    align-items: center;    /* Центрирование по горизонтали */
+    width: 100%;   
+}
 
 #search-button {
     vertical-align: middle;
