@@ -29,6 +29,10 @@ a{
   display: inline-block;
 }
 
+p {
+    margin: 0;
+}
+
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px transparent inset !important; /* Убираем желтый фон */
     -webkit-text-fill-color: rgb(12, 12, 12) !important; /* Принудительно белый цвет текста */
@@ -312,6 +316,19 @@ a.link-update + a.link-delete {
     font-size: 17px !important; /* Принудительно устанавливаем размер шрифта */
     font-family: "Roboto", sans-serif !important; /* Наследуем шрифт из основного класса */
     transition: background-color 50000s ease-in-out 0s, color 50000s ease-in-out 0s;
+}
+
+.btn.btn-primary {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 30px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    background-color: #6CADEB;
+    font-size: 17px;
+    font-weight: 600;
+    color: white;
 }
 
 #content-area-user-login {
