@@ -42,19 +42,10 @@ class UserRegisterForm(UserCreationForm):
             'autocomplete': 'off',
         })
     )
-    last_name = forms.CharField(
-        max_length=30,
-        required=False,
-        widget=forms.TextInput(attrs={
-            'class': 'form-control',
-            'placeholder': 'Ваша фамилия',
-            'autocomplete': 'off',
-        })
-    )
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
+        fields = ('username', 'email', 'first_name', 'password1', 'password2')
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -75,8 +66,6 @@ class UserRegisterForm(UserCreationForm):
                 self.fields[field].widget.attrs.update({'placeholder': 'Введите свой email'})
             elif field == 'first_name':
                 self.fields[field].widget.attrs.update({'placeholder': 'Ваше имя'})
-            elif field == 'last_name':
-                self.fields[field].widget.attrs.update({'placeholder': 'Ваша фамилия'})
             elif field == 'password1':
                 self.fields[field].widget.attrs.update({'placeholder': 'Придумайте свой пароль'})
             elif field == 'password2':
