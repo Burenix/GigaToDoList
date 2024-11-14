@@ -108,7 +108,7 @@ class UserPasswordChangeForm(PasswordChangeForm):
 
 class UserForgotPasswordForm(PasswordResetForm):
     email = forms.EmailField(
-        label="Email",
+        label="",
         max_length=254,
         widget=forms.EmailInput(attrs={
             'class': 'form-control',
