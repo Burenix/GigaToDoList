@@ -20,7 +20,7 @@ class UserLoginForm(AuthenticationForm):
             self.fields['username'].label = ''
             self.fields['password'].label = ''
             self.fields[field].widget.attrs.update({
-                'class': 'form-control-logpass-input',
+                'class': 'form-control',
                 'autocomplete': 'off'
             })
 
@@ -45,7 +45,7 @@ class UserRegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'first_name', 'password1', 'password2')
+        fields = ('username', 'first_name', 'email', 'password1', 'password2')
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -62,14 +62,20 @@ class UserRegisterForm(UserCreationForm):
             })
             if field == 'username':
                 self.fields[field].widget.attrs.update({'placeholder': 'Придумайте свой логин'})
-            elif field == 'email':
-                self.fields[field].widget.attrs.update({'placeholder': 'Введите свой email'})
             elif field == 'first_name':
                 self.fields[field].widget.attrs.update({'placeholder': 'Ваше имя'})
+            elif field == 'email':
+                self.fields[field].widget.attrs.update({'placeholder': 'Введите свой email'})
             elif field == 'password1':
                 self.fields[field].widget.attrs.update({'placeholder': 'Придумайте свой пароль'})
             elif field == 'password2':
                 self.fields[field].widget.attrs.update({'placeholder': 'Повторите придуманный пароль'})
+            self.fields['username'].label = ''
+            self.fields['email'].label = ''
+            self.fields['first_name'].label = ''
+            self.fields['password1'].label = ''
+            self.fields['password2'].label = ''
+            
 
 class UserPasswordChangeForm(PasswordChangeForm):
     old_password = forms.CharField(

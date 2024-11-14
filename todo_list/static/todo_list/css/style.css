@@ -58,7 +58,12 @@ input:-webkit-autofill:active {
 }
 
 .user-login-page .container {
-    width: 800px;
+    width: 600px;
+    height: auto;
+}
+
+.user-register-page .container {
+    width: 600px;
     height: auto;
 }
 
@@ -82,6 +87,20 @@ input:-webkit-autofill:active {
 
 .content-area {
     padding: 20px;
+}
+
+#content-area-user-login {
+    display: flex;
+    flex-direction: column; /* Элементы будут выстраиваться по вертикали */
+    align-items: center;    /* Центрирование по горизонтали */
+    height: auto;
+}
+
+#content-area-user-register {
+    display: flex;
+    flex-direction: column; /* Элементы будут выстраиваться по вертикали */
+    align-items: center;    /* Центрирование по горизонтали */
+    height: auto;
 }
 
 .search-filter-area {
@@ -300,17 +319,17 @@ a.link-update + a.link-delete {
     height: 20px;
 }
 
-.form-control-logpass-input {
+.form-control {
     width: 95%;
     outline: none;
     border: none;
-    border-radius: 10px;
+    border-radius: 7px;
     background-color: transparent;
     color: rgb(12, 12, 12);
     font-size: 17px;
 }
 
-.form-control-logpass-input:-webkit-autofill {
+.form-control:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px transparent inset !important; /* Убираем желтый фон */
     -webkit-text-fill-color: rgb(12, 12, 12) !important; /* цвет текста */
     color: rgb(12, 12, 12) !important; /* Принудительно устанавливаем black шрифт */
@@ -320,7 +339,8 @@ a.link-update + a.link-delete {
 }
 
 .btn.btn-primary {
-    margin-top: 15px;
+    padding: 0;
+    margin-top: 30px;
     margin-bottom: 5px;
     height: 30px;
     width: 100%;
@@ -334,21 +354,15 @@ a.link-update + a.link-delete {
 
 .text-hint {
     font-size: 14px;
+    color: #3F3F3F;
+}
+
+#text-hint-log {
+    margin-top: 20px;
 }
 
 #text-resetpsw {
     padding-top: 5px;
-}
-
-#text-reg {
-    color: #3F3F3F;
-}
-
-#content-area-user-login {
-    display: flex;
-    flex-direction: column; /* Элементы будут выстраиваться по вертикали */
-    align-items: center;    /* Центрирование по горизонтали */
-    height: auto;
 }
 
 #search-button {
